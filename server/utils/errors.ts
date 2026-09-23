@@ -8,10 +8,12 @@ import type { Locale } from './locale'
 const MESSAGES: Record<Locale, Record<ApiErrorCode, string>> = {
   fr: {
     bad_request: 'La requête est mal formée.',
+    not_found: 'La ressource demandée n\'existe pas.',
     validation_failed: 'Le formulaire contient des erreurs.',
   },
   en: {
     bad_request: 'The request is malformed.',
+    not_found: 'The requested resource does not exist.',
     validation_failed: 'The form contains errors.',
   },
 }

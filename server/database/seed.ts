@@ -8,8 +8,8 @@ import { soundTags, sounds, tags, users } from './schema'
 
 /**
  * Jeu de données de développement. Les sons pointent vers des checksums qui
- * n'ont aucun fichier sur le disque : le catalogue s'affiche, la lecture
- * échouera tant que le stockage des fichiers n'existe pas.
+ * n'ont aucun fichier sur le disque : le catalogue s'affiche, mais
+ * `/media/<checksum>.<ext>` répond `404` tant qu'on n'y dépose pas un fichier.
  */
 function seed(dataDir: string): void {
   if (process.env.NODE_ENV === 'production') {

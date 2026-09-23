@@ -1,5 +1,6 @@
 import { fileURLToPath } from 'node:url'
 import tailwindcss from '@tailwindcss/vite'
+import { version } from './package.json'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -15,6 +16,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     // Volume unique : la base SQLite et les médias vivent sous ce répertoire.
     dataDir: process.env.DATA_DIR ?? './data',
+    // Figée au build : c'est la version de l'image, exposée par /api/health.
+    appVersion: version,
   },
 
   nitro: {

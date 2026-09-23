@@ -1,6 +1,7 @@
 import { applyMigrations, parseMigrations } from '../database/migrator'
 import type { Migration, MigrationJournal } from '../database/migrator'
 import { createDatabase, databaseFile, setDatabaseConnection } from '../database/client'
+import { resolveDataDir } from '../utils/data-dir'
 
 /**
  * Les migrations sont embarquées comme assets serveur : le dossier
@@ -31,13 +32,8 @@ async function loadMigrationsFromAssets(): Promise<Migration[]> {
 }
 
 export default defineNitroPlugin(async (nitro) => {
-  // `DATA_DIR` est le nom documenté (.env.example, déploiement) ; il doit être
-  // relu au démarrage et pas seulement au build, sinon la même image ne peut
-  // pas changer de volume. `NUXT_DATA_DIR` reste possible via runtimeConfig.
-  const dataDir = process.env.DATA_DIR ?? useRuntimeConfig().dataDir
-
   try {
-    const connection = createDatabase(databaseFile(dataDir))
+    const connection = createDatabase(databaseFile(resolveDataDir()))
     const applied = applyMigrations(connection.sqlite, await loadMigrationsFromAssets())
 
     if (applied > 0) {

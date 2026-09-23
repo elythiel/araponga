@@ -110,3 +110,5 @@ export const SoundQuerySchema = v.object({
     v.array(TagSlugSchema),
   ), []),
 })
+
+export type SoundQuery = v.InferOutput<typeof SoundQuerySchema>
