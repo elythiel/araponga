@@ -61,6 +61,8 @@ export interface MediaStorage {
   discard: (file: ReceivedFile) => Promise<void>
   /** Chemin et taille d'un fichier publié, ou `null` s'il n'est pas sur le disque. */
   locate: (file: MediaFile) => Promise<{ path: string, sizeBytes: number } | null>
+  /** Supprime un fichier publié. Sans effet s'il a déjà disparu. */
+  remove: (file: MediaFile) => Promise<void>
 }
 
 function isMissing(error: unknown): boolean {
@@ -153,5 +155,9 @@ export function createMediaStorage(dataDir: string): MediaStorage {
     }
   }
 
-  return { receive, commit, discard, locate }
+  async function remove(file: MediaFile): Promise<void> {
+    await rm(pathOf(file), { force: true })
+  }
+
+  return { receive, commit, discard, locate, remove }
 }

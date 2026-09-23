@@ -18,10 +18,12 @@ export const E2E_DATA_DIR = join(tmpdir(), `araponga-e2e-${PORT}`)
 
 export default defineConfig({
   testDir: './tests/e2e',
-  fullyParallel: true,
+  fullyParallel: false,
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 1 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  // Un seul worker : tous les tests partagent la base du serveur et le compte
+  // factice, qu'un test rétrograde pendant qu'un autre administre.
+  workers: 1,
   reporter: process.env.CI ? 'github' : 'list',
   use: {
     baseURL,

@@ -10,7 +10,12 @@ export const API_ERROR_STATUS = {
   unauthenticated: 401,
   forbidden: 403,
   not_found: 404,
+  duplicate_sound: 409,
+  hotkey_taken: 409,
+  file_too_large: 413,
+  unsupported_media_type: 415,
   validation_failed: 422,
+  rate_limited: 429,
 } as const
 
 export type ApiErrorCode = keyof typeof API_ERROR_STATUS

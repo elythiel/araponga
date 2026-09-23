@@ -4,12 +4,28 @@ import { version } from './package.json'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@nuxt/eslint', '@nuxt/test-utils/module', 'nuxt-auth-utils'],
+  modules: ['@nuxt/eslint', '@nuxt/test-utils/module', 'nuxt-auth-utils', '@nuxtjs/i18n'],
 
   // Aucune page n'a encore besoin de la session : la charger à chaque rendu
   // coûterait une requête interne par visite de la board publique.
   auth: {
     loadStrategy: 'none',
+  },
+
+  // La langue est une préférence, pas une route : pas de préfixe d'URL.
+  // Les fichiers vivent dans `i18n/locales/`.
+  i18n: {
+    strategy: 'no_prefix',
+    defaultLocale: 'fr',
+    locales: [
+      { code: 'fr', language: 'fr-FR', name: 'Français', file: 'fr.json' },
+      { code: 'en', language: 'en-US', name: 'English', file: 'en.json' },
+    ],
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'araponga-locale',
+      redirectOn: 'root',
+    },
   },
 
   // Tailwind n'est chargé que pour son reset (preflight) ; aucune

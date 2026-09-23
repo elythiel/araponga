@@ -9,7 +9,7 @@ import { E2E_DATA_DIR } from '../../playwright.config'
 // s'enchaînent au lieu de tourner en parallèle.
 test.describe.configure({ mode: 'serial' })
 
-/** Route d'administration quelconque : la garde répond avant tout routage. */
+/** Route d'administration en lecture : la garde répond avant elle. */
 const ADMIN_ROUTE = '/api/admin/sounds'
 
 /** Change un rôle directement en base, comme le fera l'écran des utilisateurs. */
@@ -44,8 +44,8 @@ test('connexion, rétrogradation sans reconnexion, puis déconnexion', async ({ 
   await expect(page).toHaveURL('/')
   expect(await sessionUser(request)).toMatchObject({ name: 'Développement', role: 'admin' })
 
-  // Admin : la garde laisse passer ; aucune route n'existe encore derrière.
-  expect((await request.get(ADMIN_ROUTE)).status()).toBe(404)
+  // Admin : la garde laisse passer.
+  expect((await request.get(ADMIN_ROUTE)).status()).toBe(200)
 
   setDevRole('user')
 
@@ -57,7 +57,7 @@ test('connexion, rétrogradation sans reconnexion, puis déconnexion', async ({ 
 
   setDevRole('admin')
 
-  expect((await request.get(ADMIN_ROUTE)).status()).toBe(404)
+  expect((await request.get(ADMIN_ROUTE)).status()).toBe(200)
 
   const logout = await request.post('/api/auth/logout', { maxRedirects: 0 })
 

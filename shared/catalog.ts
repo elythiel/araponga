@@ -28,6 +28,21 @@ export interface Catalog {
   tags: CatalogTag[]
 }
 
+/** Son vu de l'administration : le catalogue public, enrichi. */
+export interface AdminSound extends CatalogSound {
+  sizeBytes: number
+  originalFilename: string
+  createdAt: number
+  updatedAt: number
+  createdBy: { id: string, name: string | null } | null
+}
+
+/** Réponse de `GET /api/admin/sounds`. */
+export interface AdminCatalog {
+  sounds: AdminSound[]
+  tags: CatalogTag[]
+}
+
 /** Forme comparable d'un texte : sans casse ni accents, « Brisé » vaut « brise ». */
 export function foldForSearch(text: string): string {
   return text.toLowerCase().normalize('NFKD').replace(/\p{M}/gu, '')
@@ -39,7 +54,7 @@ export function foldForSearch(text: string): string {
  * la board au jeu complet déjà chargé — un lien partagé donne ainsi le même
  * résultat des deux côtés.
  */
-export function filterSounds(sounds: CatalogSound[], query: SoundQuery): CatalogSound[] {
+export function filterSounds<TSound extends CatalogSound>(sounds: TSound[], query: SoundQuery): TSound[] {
   const needle = query.q === undefined ? undefined : foldForSearch(query.q)
 
   return sounds.filter((sound) => {

@@ -7,6 +7,8 @@ export const SOUND_NAME_MAX_LENGTH = 80
 export const SOUND_DESCRIPTION_MAX_LENGTH = 280
 export const SOUND_TAGS_MAX = 10
 export const SOUND_QUERY_MAX_LENGTH = 80
+/** 10 Mo : au-delà, l'upload est coupé sans que le reste du flux soit lu. */
+export const SOUND_FILE_MAX_BYTES = 10 * 1024 * 1024
 
 /**
  * Champ facultatif d'un formulaire : une chaîne vide ou blanche vaut `null`,
