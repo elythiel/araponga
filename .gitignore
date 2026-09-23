@@ -1,0 +1,40 @@
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist
+
+# Node dependencies
+node_modules
+
+# Yarn (node-modules linker : seul le lockfile est versionné)
+.yarn/*
+!.yarn/patches
+.pnp.*
+
+# Logs
+logs
+*.log
+
+# Misc
+.DS_Store
+.fleet
+.idea
+
+# Local env files
+.env
+.env.*
+!.env.example
+
+# Données locales (SQLite + médias)
+data
+
+# Tests
+test-results
+playwright-report
+coverage
+
+# Spécifications de travail (hors dépôt)
+docs

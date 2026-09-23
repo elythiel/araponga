@@ -1,0 +1,5 @@
+/*
+ * Uniquement le reset de Tailwind (preflight).
+ * Aucun thème, aucune palette, aucune utilitaire décorative pour l'instant.
+ */
+@import 'tailwindcss';
