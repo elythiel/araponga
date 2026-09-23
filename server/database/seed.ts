@@ -1,4 +1,6 @@
 import { v7 as uuidv7 } from 'uuid'
+// Chemin relatif : le seed tourne sous jiti, hors de Nuxt et de ses alias.
+import { slugify } from '../../shared/schemas/tag'
 import { applyMigrations } from './migrator'
 import { loadMigrationsFromDisk } from './migrations'
 import { createDatabase, databaseFile } from './client'
@@ -43,7 +45,7 @@ function seed(dataDir: string): void {
   const tagRows = ['Blagues', 'Ambiances', 'Jeux vidéo', 'Cinéma'].map((name, index) => ({
     id: uuidv7(),
     name,
-    slug: name.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+    slug: slugify(name),
     createdAt: now + index,
   }))
 

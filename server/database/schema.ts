@@ -1,14 +1,13 @@
 import { relations } from 'drizzle-orm'
 import { index, integer, primaryKey, sqliteTable, text, unique } from 'drizzle-orm/sqlite-core'
+// Chemin relatif : drizzle-kit charge ce fichier hors de Nuxt, sans ses alias.
+import type { UserRole } from '../../shared/schemas/user'
 
 /**
  * Les identifiants sont des UUID v7 stockés en texte : triables
  * chronologiquement, opaques en URL, générables hors base.
  * Les dates sont des epoch ms, jamais des chaînes.
  */
-
-export const USER_ROLES = ['admin', 'user'] as const
-export type UserRole = (typeof USER_ROLES)[number]
 
 export const users = sqliteTable(
   'users',

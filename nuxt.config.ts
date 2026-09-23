@@ -28,6 +28,17 @@ export default defineNuxtConfig({
     ],
   },
 
+  hooks: {
+    // Nuxt ne déclare son gestionnaire d'erreurs que si aucun autre ne l'est :
+    // celui de l'API se place donc devant le sien, sans le remplacer.
+    'nitro:config'(nitroConfig) {
+      nitroConfig.errorHandler = [
+        fileURLToPath(new URL('server/error.ts', import.meta.url)),
+        ...[nitroConfig.errorHandler ?? []].flat(),
+      ]
+    },
+  },
+
   vite: {
     plugins: [tailwindcss()],
   },
