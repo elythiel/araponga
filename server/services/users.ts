@@ -1,8 +1,11 @@
-import { and, count, eq } from 'drizzle-orm'
+import { and, asc, count, eq } from 'drizzle-orm'
 import { v7 as uuidv7 } from 'uuid'
+import type { AdminUser } from '#shared/catalog'
+import type { UserRole } from '#shared/schemas/user'
 import type { Database } from '../database/client'
 import { users } from '../database/schema'
 import type { User } from '../database/schema'
+import { ApiError } from '../utils/errors'
 
 /** Ce que le provider affirme d'une personne, une fois l'`id_token` vérifié. */
 export interface OidcIdentity {
@@ -82,4 +85,70 @@ export function recordDevBypassLogin(db: Database, now: number = Date.now()): Us
 
 export function findUser(db: Database, id: string): User | undefined {
   return db.select().from(users).where(eq(users.id, id)).get()
+}
+
+function toAdminUser(user: User): AdminUser {
+  return {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+    createdAt: user.createdAt,
+    lastLoginAt: user.lastLoginAt,
+  }
+}
+
+export function listUsers(db: Database): AdminUser[] {
+  return db.select().from(users).orderBy(asc(users.createdAt), asc(users.id)).all().map(toAdminUser)
+}
+
+type Transaction = Parameters<Parameters<Database['transaction']>[0]>[0]
+
+function adminCount(tx: Transaction): number {
+  return tx.select({ total: count() }).from(users).where(eq(users.role, 'admin')).get()?.total ?? 0
+}
+
+/**
+ * Change le rôle d'un compte. Deux garde-fous, dans cet ordre : on ne se
+ * rétrograde pas soi-même (`403`), et le dernier administrateur ne peut pas
+ * l'être (`409`). Le décompte se fait dans la transaction qui écrit : deux
+ * rétrogradations croisées ne peuvent pas vider l'instance.
+ */
+export function setUserRole(db: Database, actorId: string, id: string, role: UserRole): AdminUser {
+  return db.transaction((tx) => {
+    const user = tx.select().from(users).where(eq(users.id, id)).get()
+
+    if (!user) {
+      throw new ApiError('not_found')
+    }
+
+    if (role === 'user' && user.role === 'admin') {
+      if (user.id === actorId) {
+        throw new ApiError('self_demotion')
+      }
+
+      if (adminCount(tx) <= 1) {
+        throw new ApiError('last_admin')
+      }
+    }
+
+    return toAdminUser(tx.update(users).set({ role }).where(eq(users.id, id)).returning().get())
+  }, { behavior: 'immediate' })
+}
+
+/** Supprime un compte ; ses sons restent (`created_by` passe à `NULL`). */
+export function deleteUser(db: Database, id: string): void {
+  db.transaction((tx) => {
+    const user = tx.select().from(users).where(eq(users.id, id)).get()
+
+    if (!user) {
+      throw new ApiError('not_found')
+    }
+
+    if (user.role === 'admin' && adminCount(tx) <= 1) {
+      throw new ApiError('last_admin')
+    }
+
+    tx.delete(users).where(eq(users.id, id)).run()
+  }, { behavior: 'immediate' })
 }

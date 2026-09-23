@@ -53,10 +53,8 @@ function onSaved(sound: AdminSound) {
 <template>
   <main :data-state="status">
     <header>
+      <AdminNav />
       <h1>{{ t('admin.title') }}</h1>
-      <NuxtLink to="/">
-        {{ t('admin.backToBoard') }}
-      </NuxtLink>
     </header>
 
     <AdminSoundUploadForm

@@ -54,6 +54,64 @@
       "submit": "Save",
       "cancel": "Cancel",
       "saved": "“{name}” has been saved."
+    },
+    "nav": {
+      "label": "Administration",
+      "sounds": "Sounds",
+      "tags": "Tags",
+      "users": "Accounts"
+    },
+    "tags": {
+      "title": "Tag administration",
+      "legend": "Create a tag",
+      "name": "Tag name",
+      "submit": "Create",
+      "created": "The tag “{name}” has been created.",
+      "existed": "The tag “{name}” already existed.",
+      "caption": "Tags",
+      "count": "No tags | One tag | {count} tags",
+      "empty": "No tags yet.",
+      "columns": {
+        "name": "Name",
+        "slug": "Identifier",
+        "sounds": "Sounds",
+        "actions": "Actions"
+      },
+      "orphan": "Orphan: no sound carries this tag.",
+      "rename": "Rename “{name}”",
+      "delete": "Delete “{name}”",
+      "confirmDelete": "Delete the tag “{name}”?",
+      "confirmForce": "Delete “{name}”? No sound will lose this tag. | Delete “{name}”? One sound will lose this tag. | Delete “{name}”? {count} sounds will lose this tag.",
+      "deleted": "The tag “{name}” has been deleted.",
+      "renameTitle": "Rename “{name}”",
+      "save": "Save",
+      "cancel": "Cancel",
+      "renamed": "The tag has been renamed to “{name}”."
+    },
+    "users": {
+      "title": "Account administration",
+      "caption": "Accounts",
+      "count": "No accounts | One account | {count} accounts",
+      "columns": {
+        "name": "Name",
+        "email": "Email",
+        "role": "Role",
+        "lastLogin": "Last sign-in",
+        "actions": "Actions"
+      },
+      "roles": {
+        "admin": "Administrator",
+        "user": "User"
+      },
+      "anonymous": "No name",
+      "you": "(you)",
+      "never": "Never",
+      "none": "—",
+      "promote": "Promote “{name}” to administrator",
+      "demote": "Demote “{name}” to user",
+      "selfDemotion": "You cannot remove your own administrator role: ask another administrator.",
+      "lastAdmin": "This is the last administrator: promote another account before demoting this one.",
+      "updated": "“{name}” is now {role}."
     }
   },
   "errors": {
@@ -80,6 +138,9 @@
     "unsupported_media_type": "This file is not an accepted audio format.",
     "rate_limited": "Too many recent uploads, try again in a few minutes.",
     "not_found": "This sound no longer exists.",
-    "unknown": "An unexpected error occurred."
+    "unknown": "An unexpected error occurred.",
+    "tag_in_use": "Another tag already has this name.",
+    "self_demotion": "You cannot remove your own administrator role.",
+    "last_admin": "The instance must keep at least one administrator."
   }
 }

@@ -54,6 +54,64 @@
       "submit": "Enregistrer",
       "cancel": "Annuler",
       "saved": "« {name} » a été enregistré."
+    },
+    "nav": {
+      "label": "Administration",
+      "sounds": "Sons",
+      "tags": "Tags",
+      "users": "Comptes"
+    },
+    "tags": {
+      "title": "Administration des tags",
+      "legend": "Créer un tag",
+      "name": "Nom du tag",
+      "submit": "Créer",
+      "created": "Le tag « {name} » a été créé.",
+      "existed": "Le tag « {name} » existait déjà.",
+      "caption": "Tags",
+      "count": "Aucun tag | Un tag | {count} tags",
+      "empty": "Aucun tag pour l'instant.",
+      "columns": {
+        "name": "Nom",
+        "slug": "Identifiant",
+        "sounds": "Sons",
+        "actions": "Actions"
+      },
+      "orphan": "Orphelin : aucun son ne porte ce tag.",
+      "rename": "Renommer « {name} »",
+      "delete": "Supprimer « {name} »",
+      "confirmDelete": "Supprimer le tag « {name} » ?",
+      "confirmForce": "Supprimer « {name} » ? Aucun son ne perdra ce tag. | Supprimer « {name} » ? Un son perdra ce tag. | Supprimer « {name} » ? {count} sons perdront ce tag.",
+      "deleted": "Le tag « {name} » a été supprimé.",
+      "renameTitle": "Renommer « {name} »",
+      "save": "Enregistrer",
+      "cancel": "Annuler",
+      "renamed": "Le tag a été renommé en « {name} »."
+    },
+    "users": {
+      "title": "Administration des comptes",
+      "caption": "Comptes",
+      "count": "Aucun compte | Un compte | {count} comptes",
+      "columns": {
+        "name": "Nom",
+        "email": "Email",
+        "role": "Rôle",
+        "lastLogin": "Dernière connexion",
+        "actions": "Actions"
+      },
+      "roles": {
+        "admin": "Administrateur",
+        "user": "Utilisateur"
+      },
+      "anonymous": "Sans nom",
+      "you": "(vous)",
+      "never": "Jamais",
+      "none": "—",
+      "promote": "Promouvoir « {name} » administrateur",
+      "demote": "Rétrograder « {name} » en utilisateur",
+      "selfDemotion": "Vous ne pouvez pas retirer votre propre rôle d'administrateur : demandez à un autre administrateur.",
+      "lastAdmin": "C'est le dernier administrateur : promouvez un autre compte avant de le rétrograder.",
+      "updated": "« {name} » est maintenant {role}."
     }
   },
   "errors": {
@@ -80,6 +138,9 @@
     "unsupported_media_type": "Ce fichier n'est pas un format audio accepté.",
     "rate_limited": "Trop d'envois récents, réessayez dans quelques minutes.",
     "not_found": "Ce son n'existe plus.",
-    "unknown": "Une erreur inattendue est survenue."
+    "unknown": "Une erreur inattendue est survenue.",
+    "tag_in_use": "Un autre tag porte déjà ce nom.",
+    "self_demotion": "Vous ne pouvez pas retirer votre propre rôle d'administrateur.",
+    "last_admin": "L'instance doit garder au moins un administrateur."
   }
 }

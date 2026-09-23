@@ -24,6 +24,8 @@ const FIELD_OF_CODE: Record<string, string> = {
   file_too_large: 'file',
   unsupported_media_type: 'file',
   hotkey_taken: 'hotkey',
+  // Un renommage vers le slug d'un autre tag.
+  tag_in_use: 'name',
 }
 
 function isApiErrorBody(value: unknown): value is ApiErrorBody {

@@ -1,4 +1,5 @@
 import type { SoundQuery } from './schemas/sound'
+import type { UserRole } from './schemas/user'
 
 /** Réponse de `GET /api/sounds`, telle que la décrit docs/03-api.md. */
 export interface CatalogTagRef {
@@ -35,6 +36,16 @@ export interface AdminSound extends CatalogSound {
   createdAt: number
   updatedAt: number
   createdBy: { id: string, name: string | null } | null
+}
+
+/** Compte vu de l'administration : jamais l'émetteur ni le `sub`. */
+export interface AdminUser {
+  id: string
+  name: string | null
+  email: string | null
+  role: UserRole
+  createdAt: number
+  lastLoginAt: number | null
 }
 
 /** Réponse de `GET /api/admin/sounds`. */
