@@ -31,6 +31,9 @@ logs
 # Données locales (SQLite + médias)
 data
 
+# Artefacts TypeScript
+*.tsbuildinfo
+
 # Tests
 test-results
 playwright-report

@@ -18,10 +18,16 @@
     "typecheck": "nuxt typecheck",
     "test": "yarn test:unit",
     "test:unit": "vitest run",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "db:generate": "drizzle-kit generate",
+    "db:seed": "jiti server/database/seed.ts",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
+    "better-sqlite3": "^13.0.3",
+    "drizzle-orm": "^0.45.3",
     "nuxt": "^4.5.2",
+    "uuid": "^14.0.2",
     "vue": "^3.5.43",
     "vue-router": "^5.3.1"
   },
@@ -30,10 +36,13 @@
     "@nuxt/test-utils": "^4.3.2",
     "@playwright/test": "^1.63.0",
     "@tailwindcss/vite": "^4.3.3",
+    "@types/better-sqlite3": "^9.6.0",
     "@vue/compiler-dom": "^3.5.43",
     "@vue/test-utils": "^2.5.1",
+    "drizzle-kit": "^0.31.11",
     "eslint": "^10.11.0",
     "happy-dom": "^20.14.5",
+    "jiti": "^2.7.0",
     "playwright-core": "^1.63.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
@@ -42,6 +51,9 @@
     "vue-tsc": "^3.3.11"
   },
   "dependenciesMeta": {
+    "better-sqlite3": {
+      "built": true
+    },
     "esbuild": {
       "built": true
     },

@@ -1,0 +1,17 @@
+{
+  // Nuxt ne génère de projet que pour app/, server/ et shared/ : sans celui-ci,
+  // les tests et les configurations racine ne seraient jamais typés.
+  // Le projet applicatif sert de base — les tests montent des composants et
+  // ont donc besoin des auto-imports de `app/`, déclarés par `.nuxt/nuxt.d.ts`.
+  "extends": "./.nuxt/tsconfig.app.json",
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "include": [
+    "./.nuxt/nuxt.d.ts",
+    "tests/**/*",
+    "drizzle.config.ts",
+    "playwright.config.ts",
+    "vitest.config.ts"
+  ]
+}
