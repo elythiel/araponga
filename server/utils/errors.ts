@@ -8,11 +8,15 @@ import type { Locale } from './locale'
 const MESSAGES: Record<Locale, Record<ApiErrorCode, string>> = {
   fr: {
     bad_request: 'La requête est mal formée.',
+    unauthenticated: 'Une connexion est nécessaire.',
+    forbidden: 'Vos droits ne permettent pas cette action.',
     not_found: 'La ressource demandée n\'existe pas.',
     validation_failed: 'Le formulaire contient des erreurs.',
   },
   en: {
     bad_request: 'The request is malformed.',
+    unauthenticated: 'You need to sign in.',
+    forbidden: 'You are not allowed to do this.',
     not_found: 'The requested resource does not exist.',
     validation_failed: 'The form contains errors.',
   },

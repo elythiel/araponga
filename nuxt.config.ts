@@ -4,7 +4,13 @@ import { version } from './package.json'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@nuxt/eslint', '@nuxt/test-utils/module'],
+  modules: ['@nuxt/eslint', '@nuxt/test-utils/module', 'nuxt-auth-utils'],
+
+  // Aucune page n'a encore besoin de la session : la charger à chaque rendu
+  // coûterait une requête interne par visite de la board publique.
+  auth: {
+    loadStrategy: 'none',
+  },
 
   // Tailwind n'est chargé que pour son reset (preflight) ; aucune
   // direction artistique n'est encore posée.
@@ -18,6 +24,23 @@ export default defineNuxtConfig({
     dataDir: process.env.DATA_DIR ?? './data',
     // Figée au build : c'est la version de l'image, exposée par /api/health.
     appVersion: version,
+    // Le mot de passe n'est jamais lu ici, au build : il finirait dans le
+    // bundle. `server/plugins/auth.ts` le valide et le transmet au démarrage.
+    session: {
+      name: 'araponga-session',
+      password: '',
+      // 30 jours, prolongés à l'usage (voir `server/utils/session-user.ts`).
+      maxAge: 60 * 60 * 24 * 30,
+      cookie: { sameSite: 'lax', secure: true, httpOnly: true },
+    },
+  },
+
+  // Sans valeur en développement, nuxt-auth-utils écrirait son propre mot de
+  // passe dans `.env`, sous un autre nom que `SESSION_PASSWORD`.
+  $development: {
+    runtimeConfig: {
+      session: { password: 'remplacé au démarrage par server/plugins/auth.ts' },
+    },
   },
 
   nitro: {

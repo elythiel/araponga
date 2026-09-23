@@ -88,6 +88,7 @@ function codeOf(issue: Issue): ValidationIssueCode {
     case 'to_number':
       return 'invalid_type'
     case 'regex':
+    case 'url':
     case 'uuid':
       return 'invalid_format'
     default:

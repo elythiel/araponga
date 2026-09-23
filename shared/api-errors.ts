@@ -7,6 +7,8 @@ import type { ValidationIssue } from './schemas/validation'
  */
 export const API_ERROR_STATUS = {
   bad_request: 400,
+  unauthenticated: 401,
+  forbidden: 403,
   not_found: 404,
   validation_failed: 422,
 } as const

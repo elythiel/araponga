@@ -9,6 +9,9 @@
   },
   "include": [
     "./.nuxt/nuxt.d.ts",
+    // Les augmentations de types partagées (session…) que le projet
+    // applicatif inclut, et que remplacer `include` ferait perdre.
+    "shared/**/*.d.ts",
     "tests/**/*",
     "drizzle.config.ts",
     "playwright.config.ts",

@@ -5,6 +5,24 @@ __metadata:
   version: 10
   cacheKey: 10c0
 
+"@adonisjs/hash@npm:^9.1.1":
+  version: 9.1.1
+  resolution: "@adonisjs/hash@npm:9.1.1"
+  dependencies:
+    "@phc/format": "npm:^1.0.0"
+    "@poppinss/utils": "npm:^6.9.3"
+  peerDependencies:
+    argon2: ^0.31.2 || ^0.41.0 || ^0.43.0
+    bcrypt: ^5.1.1 || ^6.0.0
+  peerDependenciesMeta:
+    argon2:
+      optional: true
+    bcrypt:
+      optional: true
+  checksum: 10c0/87f366bd742fd0b1a46cc25e53dd06a25d3f38990a1dcf624ecd0c455dc90b07b32d56274c104bda8048cc10121e9506f109e4b731630bad13dc8c73c60cd012
+  languageName: node
+  linkType: hard
+
 "@antfu/install-pkg@npm:^2.0.1":
   version: 2.1.0
   resolution: "@antfu/install-pkg@npm:2.1.0"
@@ -1679,7 +1697,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/kit@npm:4.5.2, @nuxt/kit@npm:^4.5.1, @nuxt/kit@npm:^4.5.2":
+"@nuxt/kit@npm:4.5.2, @nuxt/kit@npm:^4.3.1, @nuxt/kit@npm:^4.5.1, @nuxt/kit@npm:^4.5.2":
   version: 4.5.2
   resolution: "@nuxt/kit@npm:4.5.2"
   dependencies:
@@ -1963,6 +1981,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@phc/format@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@phc/format@npm:1.0.0"
+  checksum: 10c0/56cec2687ac3767298f77b2202c0d6f282878c1375948b01da16e03475dc293628847d33150469a793d55095700dce65ac1760ada271deeab15bd0c6d1ceb306
+  languageName: node
+  linkType: hard
+
 "@pkgjs/parseargs@npm:^0.11.0":
   version: 0.11.0
   resolution: "@pkgjs/parseargs@npm:0.11.0"
@@ -2008,10 +2033,43 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@poppinss/exception@npm:^1.2.2":
+"@poppinss/exception@npm:^1.2.1, @poppinss/exception@npm:^1.2.2":
   version: 1.2.3
   resolution: "@poppinss/exception@npm:1.2.3"
   checksum: 10c0/44e48400c9f2d33a4904bee99321b89239774bb9210049f1c55864725fd524ff55bc78a5a94a13d5edea93b84e13023c229c88ebba8c2dc717fb4b2205e42ac7
+  languageName: node
+  linkType: hard
+
+"@poppinss/object-builder@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@poppinss/object-builder@npm:1.1.0"
+  checksum: 10c0/1f7d7a86d3db588442479ca7a59e75d0fd49af12986801eb3e52d89c834fe1515bc44f222afbffd8c438df2131ebb3b007cc5cc72aa97b0ed0e1ca85cb7cff61
+  languageName: node
+  linkType: hard
+
+"@poppinss/string@npm:^1.3.0":
+  version: 1.7.2
+  resolution: "@poppinss/string@npm:1.7.2"
+  dependencies:
+    "@types/pluralize": "npm:^0.0.33"
+    case-anything: "npm:^3.1.2"
+    pluralize: "npm:^8.0.0"
+    slugify: "npm:^1.6.9"
+  checksum: 10c0/cb564770558abd15a1874826e719eefd86332c4db3090a673c50d95e8898e9b6b03c90109f4f920f857e5e570c5db0dbaeaf3bc81c930e9803369fbf0dacfd7a
+  languageName: node
+  linkType: hard
+
+"@poppinss/utils@npm:^6.9.3":
+  version: 6.10.1
+  resolution: "@poppinss/utils@npm:6.10.1"
+  dependencies:
+    "@poppinss/exception": "npm:^1.2.1"
+    "@poppinss/object-builder": "npm:^1.1.0"
+    "@poppinss/string": "npm:^1.3.0"
+    flattie: "npm:^1.1.1"
+    safe-stable-stringify: "npm:^2.5.0"
+    secure-json-parse: "npm:^4.0.0"
+  checksum: 10c0/9ec413e9e829adee8477b5fd3c8572c7afe506ddf52315b825cdc23b2fd5bb56a0ee8ecc5902d0a5155b4c872aaad8466d2084b0054fd26d027a4a6ac034d2b5
   languageName: node
   linkType: hard
 
@@ -2715,6 +2773,13 @@ __metadata:
   dependencies:
     undici-types: "npm:~8.9.0"
   checksum: 10c0/bb411ff5863a79a28ffa4ebadf2499d44046aa114d25a7a6c78f57def118123a0a7dea99e8fe38849099e9dba2b41b8853a7a282037618559f58653c35e7c5c5
+  languageName: node
+  linkType: hard
+
+"@types/pluralize@npm:^0.0.33":
+  version: 0.0.33
+  resolution: "@types/pluralize@npm:0.0.33"
+  checksum: 10c0/24899caf85b79dd291a6b6e9b9f3b67b452b18d578d0ac0d531a705bf5ee0361d9386ea1f8532c64de9e22c6e9606c5497787bb5e31bd299c487980436c59785
   languageName: node
   linkType: hard
 
@@ -3570,7 +3635,10 @@ __metadata:
     eslint: "npm:^10.11.0"
     happy-dom: "npm:^20.14.5"
     jiti: "npm:^2.7.0"
+    jose: "npm:^6.2.12"
     nuxt: "npm:^4.5.2"
+    nuxt-auth-utils: "npm:^0.5.30"
+    openid-client: "npm:^6.8.8"
     playwright-core: "npm:^1.63.0"
     tailwindcss: "npm:^4.3.3"
     typescript: "npm:^6.0.3"
@@ -3994,6 +4062,13 @@ __metadata:
   version: 1.0.30001810
   resolution: "caniuse-lite@npm:1.0.30001810"
   checksum: 10c0/d29bc73f33c888025d54c7ff2984372d3b350b15a6a9e174884fb40976175e9177f202e2a72c2d428dddfc032784bc8ba635a31d168fcab9fac65756d7b3d6b4
+  languageName: node
+  linkType: hard
+
+"case-anything@npm:^3.1.2":
+  version: 3.1.4
+  resolution: "case-anything@npm:3.1.4"
+  checksum: 10c0/c43bf269aa82781e651e85bf822eada72430da43d60e4adb2605b20a8b77ecc927b4c029447f14f2ec9e0a25ae5894bf93b216f3d9d4bce1a34494f4b09836f3
   languageName: node
   linkType: hard
 
@@ -5762,6 +5837,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"flattie@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "flattie@npm:1.1.1"
+  checksum: 10c0/a8f8242c7af126cb2f1aa4a067af338fce609fc4c4df183c626fcc70a46c1878ce4aa88cd0dc8ef8f583ad4e7088a3b11ebeb6a62c9c97d75c0b1b0f08182ee3
+  languageName: node
+  linkType: hard
+
 "fnv1a-64@npm:^0.1.2":
   version: 0.1.2
   resolution: "fnv1a-64@npm:0.1.2"
@@ -5994,7 +6076,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"h3@npm:^1.15.10, h3@npm:^1.15.11":
+"h3@npm:^1.15.10, h3@npm:^1.15.11, h3@npm:^1.15.4":
   version: 1.15.11
   resolution: "h3@npm:1.15.11"
   dependencies:
@@ -6071,7 +6153,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hookable@npm:^6.1.1":
+"hookable@npm:^6.0.1, hookable@npm:^6.1.1":
   version: 6.1.2
   resolution: "hookable@npm:6.1.2"
   checksum: 10c0/ea5cdb1b1a1919b48cfbbfb55c8009f6843473ff50f67d6e959fd291cb2fd0a4934e85124bfd6531b1d2edf1e0675bc5954f85a12318a59b15c7a3e5667f0d4e
@@ -6434,7 +6516,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jose@npm:^6.1.3":
+"jose@npm:^6.1.3, jose@npm:^6.2.12":
   version: 6.2.12
   resolution: "jose@npm:6.2.12"
   checksum: 10c0/e8582b946fabcae228819982dda4849908c353e9cb098f02f773635aa0d2f4917f17484c7441b8d526e564013b4cf96951455c94f81d0a39ee765bad44ce293d
@@ -7433,6 +7515,39 @@ __metadata:
   languageName: node
   linkType: hard
 
+"nuxt-auth-utils@npm:^0.5.30":
+  version: 0.5.30
+  resolution: "nuxt-auth-utils@npm:0.5.30"
+  dependencies:
+    "@adonisjs/hash": "npm:^9.1.1"
+    "@nuxt/kit": "npm:^4.3.1"
+    defu: "npm:^6.1.4"
+    h3: "npm:^1.15.4"
+    hookable: "npm:^6.0.1"
+    jose: "npm:^6.1.3"
+    ofetch: "npm:^1.5.1"
+    openid-client: "npm:^6.8.2"
+    pathe: "npm:^2.0.3"
+    scule: "npm:^1.3.0"
+    uncrypto: "npm:^0.1.3"
+  peerDependencies:
+    "@atproto/api": ^0.13.15
+    "@atproto/oauth-client-node": ^0.2.0
+    "@simplewebauthn/browser": ^11.0.0
+    "@simplewebauthn/server": ^11.0.0
+  peerDependenciesMeta:
+    "@atproto/api":
+      optional: true
+    "@atproto/oauth-client-node":
+      optional: true
+    "@simplewebauthn/browser":
+      optional: true
+    "@simplewebauthn/server":
+      optional: true
+  checksum: 10c0/e92fae61e53925a8e8dd51dfbe0343f745870a94bd874306273ba8ed08424560775aaef077c7c33e6fa6267f79b6d3560375afcd93539e501e619bb3751462d3
+  languageName: node
+  linkType: hard
+
 "nuxt@npm:^4.5.2":
   version: 4.5.2
   resolution: "nuxt@npm:4.5.2"
@@ -7525,6 +7640,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"oauth4webapi@npm:^3.8.8":
+  version: 3.8.8
+  resolution: "oauth4webapi@npm:3.8.8"
+  checksum: 10c0/1f7d35ba8d7d5aa9ce9ec5959a4611ed2b5dd7830172b1546749b91dda8c53f7934e669c6f81e912c64e3ae4fc681d4d6ce149b42cc9d17db97162bf8765e028
+  languageName: node
+  linkType: hard
+
 "object-deep-merge@npm:^2.0.1":
   version: 2.0.1
   resolution: "object-deep-merge@npm:2.0.1"
@@ -7600,6 +7722,16 @@ __metadata:
     powershell-utils: "npm:^0.2.1"
     wsl-utils: "npm:^1.0.0"
   checksum: 10c0/5be0a902323ea9266cf7323edf8d714b516f739519485e98b2508e38e1ffe6f98e3426aeb182fc88239bf98777258b27abbfe5cb1938bff8dbccec2fd603aca5
+  languageName: node
+  linkType: hard
+
+"openid-client@npm:^6.8.2, openid-client@npm:^6.8.8":
+  version: 6.8.8
+  resolution: "openid-client@npm:6.8.8"
+  dependencies:
+    jose: "npm:^6.2.12"
+    oauth4webapi: "npm:^3.8.8"
+  checksum: 10c0/b1d60ca45623c77b8869b5a9725e25309cca20d32823861c5f72f0e9126a3ce43da2a93be964bfe771a39560f356c06adaedb2be29fe1762c4d097f91a4b620e
   languageName: node
   linkType: hard
 
@@ -8712,6 +8844,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"safe-stable-stringify@npm:^2.5.0":
+  version: 2.5.0
+  resolution: "safe-stable-stringify@npm:2.5.0"
+  checksum: 10c0/baea14971858cadd65df23894a40588ed791769db21bafb7fd7608397dbdce9c5aac60748abae9995e0fc37e15f2061980501e012cd48859740796bea2987f49
+  languageName: node
+  linkType: hard
+
 "sax@npm:1.6.1":
   version: 1.6.1
   resolution: "sax@npm:1.6.1"
@@ -8734,6 +8873,13 @@ __metadata:
   version: 1.3.0
   resolution: "scule@npm:1.3.0"
   checksum: 10c0/5d1736daa10622c420f2aa74e60d3c722e756bfb139fa784ae5c66669fdfe92932d30ed5072e4ce3107f9c3053e35ad73b2461cb18de45b867e1d4dea63f8823
+  languageName: node
+  linkType: hard
+
+"secure-json-parse@npm:^4.0.0":
+  version: 4.1.0
+  resolution: "secure-json-parse@npm:4.1.0"
+  checksum: 10c0/52b3f8125ea974db1333a5b63e6a1df550c36c0d5f9a263911d6732812bd02e938b30be324dcbbb9da3ef9bf5a84849e0dd911f56544003d3c09e8eee12504de
   languageName: node
   linkType: hard
 
@@ -8895,6 +9041,13 @@ __metadata:
   version: 5.1.0
   resolution: "slash@npm:5.1.0"
   checksum: 10c0/eb48b815caf0bdc390d0519d41b9e0556a14380f6799c72ba35caf03544d501d18befdeeef074bc9c052acf69654bc9e0d79d7f1de0866284137a40805299eb3
+  languageName: node
+  linkType: hard
+
+"slugify@npm:^1.6.9":
+  version: 1.6.9
+  resolution: "slugify@npm:1.6.9"
+  checksum: 10c0/8473c566ae00c5db26bfbf6182a4a9478ab3c912a9c926e1fdb410736a77228bfca4fdc5c755b46fafa7d2d9900de482fd7a9bd5e5c91128c4743c2c072d88da
   languageName: node
   linkType: hard
 

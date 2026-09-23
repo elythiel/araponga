@@ -1,3 +1,5 @@
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 import { defineConfig, devices } from '@playwright/test'
 
 // Port dédié aux tests : un serveur de développement déjà ouvert sur 3000,
@@ -6,6 +8,13 @@ const PORT = Number(process.env.PLAYWRIGHT_PORT ?? 3100)
 // `localhost` et pas `127.0.0.1` : le serveur de développement de Nuxt
 // n'écoute que sur la boucle locale IPv6.
 const baseURL = `http://localhost:${PORT}`
+
+/**
+ * Volume du serveur de test, vidé à chaque lancement : la base part vierge.
+ * Chemin fixe et non tiré au hasard, parce que ce fichier est relu par chaque
+ * worker, et que les tests ouvrent la même base que le serveur.
+ */
+export const E2E_DATA_DIR = join(tmpdir(), `araponga-e2e-${PORT}`)
 
 export default defineConfig({
   testDir: './tests/e2e',
@@ -22,7 +31,13 @@ export default defineConfig({
     { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
   ],
   webServer: {
-    command: `yarn dev --port ${PORT}`,
+    command: `rm -rf "${E2E_DATA_DIR}" && yarn dev --port ${PORT}`,
+    // Les e2e passent par la session factice : aucun provider OIDC requis.
+    env: {
+      DATA_DIR: E2E_DATA_DIR,
+      AUTH_DEV_BYPASS: '1',
+      SESSION_PASSWORD: 'e2e-uniquement-jamais-en-production',
+    },
     url: baseURL,
     reuseExistingServer: false,
     timeout: 120_000,
