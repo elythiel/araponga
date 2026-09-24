@@ -46,20 +46,30 @@ function describedBy(sound: CatalogSound, failed: boolean): string | undefined {
         :aria-keyshortcuts="sound.hotkey?.toUpperCase()"
         @click="emit('play', sound)"
       >
-        <span :id="`sound-${sound.id}-name`">{{ sound.name }}</span>
+        <!-- En bloc : sans espace entre eux, les textes se colleraient à l'écran. -->
+        <span
+          :id="`sound-${sound.id}-name`"
+          class="block"
+        >{{ sound.name }}</span>
         <kbd
           v-if="sound.hotkey"
           :id="`sound-${sound.id}-key`"
+          class="block"
         >{{ t('board.sound.key', { key: sound.hotkey.toUpperCase() }) }}</kbd>
         <span
           v-if="sound.tags.length > 0"
           :id="`sound-${sound.id}-tags`"
+          class="block"
         >{{ t('board.sound.tags', { tags: sound.tags.map(tag => tag.name).join(', ') }) }}</span>
         <span
           v-if="failedIds.has(sound.id)"
           :id="`sound-${sound.id}-state`"
+          class="block"
         >{{ t('board.sound.unavailable') }}</span>
-        <span v-else-if="playingIds.has(sound.id)">{{ t('board.sound.playing') }}</span>
+        <span
+          v-else-if="playingIds.has(sound.id)"
+          class="block"
+        >{{ t('board.sound.playing') }}</span>
       </button>
     </li>
   </ul>

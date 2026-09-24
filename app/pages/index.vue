@@ -137,7 +137,10 @@ watch(playingCount, (count, previous) => {
       >
         {{ playingCount === 0 ? t('board.stopAll.idle') : t('board.stopAll.active', { count: playingCount }) }}
       </button>
-      <NuxtLink to="/admin">
+      <NuxtLink
+        to="/admin"
+        class="inline-block min-h-11 min-w-11"
+      >
         {{ t('board.admin') }}
       </NuxtLink>
     </footer>

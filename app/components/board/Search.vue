@@ -12,6 +12,7 @@ const { t } = useI18n()
       id="board-search"
       v-model="search"
       type="search"
+      class="min-h-11"
       autocomplete="off"
       aria-keyshortcuts="/"
       aria-describedby="board-search-hint"
