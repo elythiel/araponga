@@ -1,3 +1,5 @@
+import Fuse from 'fuse.js'
+import type { IFuseOptions } from 'fuse.js'
 import type { SoundQuery } from './schemas/sound'
 import type { UserRole } from './schemas/user'
 
@@ -54,29 +56,42 @@ export interface AdminCatalog {
   tags: CatalogTag[]
 }
 
-/** Forme comparable d'un texte : sans casse ni accents, « Brisé » vaut « brise ». */
-export function foldForSearch(text: string): string {
-  return text.toLowerCase().normalize('NFKD').replace(/\p{M}/gu, '')
+/**
+ * Réglage de la recherche floue. `ignoreLocation` : la correspondance peut
+ * être n'importe où dans le texte, pas seulement au début. Le seuil (0 exact,
+ * 1 tout passe) est un point de départ, à ajuster sur de vrais noms.
+ */
+const SEARCH_OPTIONS: IFuseOptions<CatalogSound> = {
+  keys: [
+    { name: 'name', weight: 2 },
+    { name: 'tags.name', weight: 1 },
+    { name: 'description', weight: 1 },
+  ],
+  threshold: 0.4,
+  ignoreLocation: true,
+  ignoreDiacritics: true,
 }
 
 /**
- * Filtre du catalogue : la recherche porte sur le nom et la description, les
- * tags filtrent en intersection. Le serveur l'applique aux paramètres d'URL,
- * la board au jeu complet déjà chargé — un lien partagé donne ainsi le même
- * résultat des deux côtés.
+ * Filtre du catalogue, seul et même partout : la board, l'administration et
+ * `GET /api/sounds?q=` trouvent les mêmes sons pour une même requête.
+ *
+ * Les tags filtrent en intersection ; la recherche est floue, sans casse ni
+ * accents, sur le nom, les noms de tags et la description. Sans recherche,
+ * l'ordre reçu est conservé ; avec, les meilleurs résultats viennent d'abord.
  */
 export function filterSounds<TSound extends CatalogSound>(sounds: TSound[], query: SoundQuery): TSound[] {
-  const needle = query.q === undefined ? undefined : foldForSearch(query.q)
+  const tagged = query.tags.length === 0
+    ? sounds
+    : sounds.filter((sound) => {
+        const slugs = new Set(sound.tags.map(tag => tag.slug))
 
-  return sounds.filter((sound) => {
-    const slugs = new Set(sound.tags.map(tag => tag.slug))
+        return query.tags.every(slug => slugs.has(slug))
+      })
 
-    if (!query.tags.every(slug => slugs.has(slug))) {
-      return false
-    }
+  if (!query.q) {
+    return tagged
+  }
 
-    return needle === undefined
-      || foldForSearch(sound.name).includes(needle)
-      || (sound.description !== null && foldForSearch(sound.description).includes(needle))
-  })
+  return new Fuse(tagged, SEARCH_OPTIONS as IFuseOptions<TSound>).search(query.q).map(result => result.item)
 }

@@ -4315,6 +4315,7 @@ __metadata:
     drizzle-kit: "npm:^0.31.11"
     drizzle-orm: "npm:^0.45.3"
     eslint: "npm:^10.11.0"
+    fuse.js: "npm:^7.5.0"
     happy-dom: "npm:^20.14.5"
     jiti: "npm:^2.7.0"
     jose: "npm:^6.2.12"
@@ -6639,7 +6640,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fuse.js@npm:^7.4.2":
+"fuse.js@npm:^7.4.2, fuse.js@npm:^7.5.0":
   version: 7.5.0
   resolution: "fuse.js@npm:7.5.0"
   checksum: 10c0/1fa51a66063b9b0579921ed1d774864e5e027719d3a4fdb469e6636befa4a9f2f7da626c07da757c6e1ef8a761c7bd3a217e6ecc8e16f0276e1a0f8dd941ff77

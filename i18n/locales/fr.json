@@ -1,4 +1,48 @@
 {
+  "board": {
+    "title": "Araponga",
+    "search": {
+      "label": "Rechercher un son",
+      "hint": "Raccourci : /. Les fautes de frappe sont tolérées."
+    },
+    "tags": {
+      "legend": "Filtrer par tag",
+      "hint": "Plusieurs tags sélectionnés : seuls les sons qui les portent tous restent."
+    },
+    "volume": "Volume",
+    "language": "Langue",
+    "grid": {
+      "title": "Sons, page {page} sur {pageCount}",
+      "count": "aucun son | un son | {count} sons"
+    },
+    "sound": {
+      "key": "Touche {key}",
+      "tags": "Tags : {tags}",
+      "playing": "En cours",
+      "unavailable": "Indisponible"
+    },
+    "empty": {
+      "catalog": "Aucun son dans la board pour l'instant.",
+      "addSounds": "Ajouter des sons",
+      "results": "Aucun son ne correspond à cette recherche.",
+      "reset": "Réinitialiser la recherche et les filtres"
+    },
+    "pagination": {
+      "label": "Pages de sons",
+      "previous": "Page précédente",
+      "next": "Page suivante",
+      "page": "Page {page}"
+    },
+    "stopAll": {
+      "idle": "Tout couper",
+      "active": "Tout couper ({count} en cours)"
+    },
+    "status": {
+      "playing": "Lecture en cours.",
+      "stopped": "Plus aucun son ne joue."
+    },
+    "admin": "Administration"
+  },
   "admin": {
     "title": "Administration des sons",
     "backToBoard": "Retour à la board",

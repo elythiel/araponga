@@ -1,4 +1,48 @@
 {
+  "board": {
+    "title": "Araponga",
+    "search": {
+      "label": "Search a sound",
+      "hint": "Shortcut: /. Typos are tolerated."
+    },
+    "tags": {
+      "legend": "Filter by tag",
+      "hint": "Several tags selected: only sounds carrying all of them remain."
+    },
+    "volume": "Volume",
+    "language": "Language",
+    "grid": {
+      "title": "Sounds, page {page} of {pageCount}",
+      "count": "no sounds | one sound | {count} sounds"
+    },
+    "sound": {
+      "key": "Key {key}",
+      "tags": "Tags: {tags}",
+      "playing": "Playing",
+      "unavailable": "Unavailable"
+    },
+    "empty": {
+      "catalog": "No sounds on the board yet.",
+      "addSounds": "Add sounds",
+      "results": "No sound matches this search.",
+      "reset": "Reset the search and filters"
+    },
+    "pagination": {
+      "label": "Sound pages",
+      "previous": "Previous page",
+      "next": "Next page",
+      "page": "Page {page}"
+    },
+    "stopAll": {
+      "idle": "Stop all",
+      "active": "Stop all ({count} playing)"
+    },
+    "status": {
+      "playing": "Playing.",
+      "stopped": "No sound is playing anymore."
+    },
+    "admin": "Administration"
+  },
   "admin": {
     "title": "Sound administration",
     "backToBoard": "Back to the board",

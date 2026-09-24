@@ -1,10 +1,12 @@
 /**
- * WAV PCM 16 bits mono, un quart de seconde. `seed` change le contenu, donc
- * le checksum : chaque appel distinct donne un son distinct.
+ * WAV PCM 16 bits mono, d'un quart de seconde par défaut. `seed` change le
+ * contenu, donc le checksum : chaque appel distinct donne un son distinct.
+ * Les tests de lecture prennent des sons plus longs, pour qu'ils se
+ * superposent le temps d'être observés.
  */
-export function wavFile(seed: number): Buffer {
+export function wavFile(seed: number, seconds = 0.25): Buffer {
   const sampleRate = 8000
-  const samples = sampleRate / 4
+  const samples = Math.round(sampleRate * seconds)
   const data = Buffer.alloc(samples * 2)
 
   for (let index = 0; index < samples; index++) {

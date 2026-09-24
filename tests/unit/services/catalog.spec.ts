@@ -84,6 +84,12 @@ describe('getCatalog', () => {
     ])
   })
 
+  it('applique la même recherche floue que la board à ?q=', async () => {
+    const catalog = await getCatalog(connection.db, { q: 'rimshto', tags: [] })
+
+    expect(catalog.sounds.map(sound => sound.name)).toEqual(['Rimshot'])
+  })
+
   it('filtre les sons sans toucher à la liste des tags', async () => {
     const catalog = await getCatalog(connection.db, { q: 'klax', tags: [] })
 
@@ -141,5 +147,27 @@ describe('filterSounds', () => {
 
   it('combine recherche et tags', () => {
     expect(names({ q: 'verre', tags: ['blagues'] })).toEqual([])
+  })
+
+  it('tolère une faute de frappe', () => {
+    expect(names({ q: 'rimshto', tags: [] })).toEqual(['Rimshot'])
+    expect(names({ q: 'klaxno', tags: [] })).toEqual(['Klaxon'])
+  })
+
+  it('cherche aussi dans les noms de tags', () => {
+    expect(names({ q: 'blagues', tags: [] })).toContain('Rimshot')
+  })
+
+  it('ne renvoie rien quand rien n\'approche', () => {
+    expect(names({ q: 'zzzzzz', tags: [] })).toEqual([])
+  })
+
+  it('classe par pertinence : le nom compte plus que les tags', () => {
+    const ranked = filterSounds([
+      sound('Générique', null, ['fanfare']),
+      sound('Fanfare', null, []),
+    ], { q: 'fanfare', tags: [] })
+
+    expect(ranked.map(item => item.name)).toEqual(['Fanfare', 'Générique'])
   })
 })
