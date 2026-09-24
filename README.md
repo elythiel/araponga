@@ -25,7 +25,7 @@ L'application est servie sur <http://localhost:3000>.
 | `yarn lint` | ESLint |
 | `yarn typecheck` | `vue-tsc --noEmit` via `nuxt typecheck` |
 | `yarn test` | Tests unitaires (Vitest) |
-| `yarn test:e2e` | Tests de bout en bout (Playwright) |
+| `yarn test:e2e` | Build de production, puis tests de bout en bout (Playwright) |
 
 ## Pile
 

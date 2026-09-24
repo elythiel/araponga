@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Icône de passe 1, sans direction artistique : remplacée au J11. -->
+  <rect width="512" height="512" fill="#ffffff"/>
+  <text x="256" y="340" font-family="sans-serif" font-size="280" text-anchor="middle" fill="#000000">A</text>
+</svg>

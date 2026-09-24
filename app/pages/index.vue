@@ -25,6 +25,8 @@ watch(volume, value => player.setVolume(value), { immediate: true })
 const { search, selectedTags, results, page, pageCount, pageItems, toggleTag, reset, pageLink }
   = useSoundFilters(sounds)
 
+const { offlineIds } = useOfflineAvailability(pageItems, player)
+
 function play(sound: CatalogSound) {
   void player.play(sound)
 }
@@ -114,6 +116,7 @@ watch(playingCount, (count, previous) => {
         :sounds="pageItems"
         :playing-ids="playingIds"
         :failed-ids="failedIds"
+        :offline-ids="offlineIds"
         @play="play"
       />
 

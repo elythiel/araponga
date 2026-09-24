@@ -13,6 +13,7 @@ interface FakeInstance {
 function fakeEngine() {
   const instances: FakeInstance[] = []
   const unreachable = new Set<string>()
+  const loaded = new Set<string>()
   let holdLoads: Promise<void> | null = null
 
   const engine: AudioEngine = {
@@ -22,7 +23,10 @@ function fakeEngine() {
       if (unreachable.has(url)) {
         throw new Error('404')
       }
+
+      loaded.add(url)
     }),
+    isLoaded: url => loaded.has(url),
     start: (url, onEnded) => {
       const instance = { url, stopped: false, end: onEnded }
 
@@ -133,6 +137,16 @@ describe('lecteur de sons', () => {
 
     expect(player.failedIds.value.has('tada')).toBe(false)
     expect(player.playingCount.value).toBe(2)
+  })
+
+  it('sait quels sons sont déjà en mémoire, donc jouables sans réseau', async () => {
+    const { engine } = fakeEngine()
+    const player = createSoundPlayer(engine)
+
+    await player.play(tada)
+
+    expect(player.isLoaded(tada)).toBe(true)
+    expect(player.isLoaded(klaxon)).toBe(false)
   })
 
   it('transmet le volume au moteur', () => {

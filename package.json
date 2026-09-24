@@ -18,7 +18,7 @@
     "typecheck": "nuxt typecheck",
     "test": "yarn test:unit",
     "test:unit": "vitest run",
-    "test:e2e": "playwright test",
+    "test:e2e": "nuxt build && playwright test",
     "db:generate": "drizzle-kit generate",
     "db:seed": "jiti server/database/seed.ts",
     "db:studio": "drizzle-kit studio"
@@ -48,6 +48,8 @@
     "@types/better-sqlite3": "^9.6.0",
     "@types/busboy": "^1.5.4",
     "@types/sortablejs": "^1.15.9",
+    "@vite-pwa/assets-generator": "^1",
+    "@vite-pwa/nuxt": "^1.1.1",
     "@vue/compiler-dom": "^3.5.43",
     "@vue/test-utils": "^2.5.1",
     "drizzle-kit": "^0.31.11",

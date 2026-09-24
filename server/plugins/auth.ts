@@ -1,6 +1,13 @@
 import { parseAuthConfig, setAuthConfig } from '../utils/auth-config'
 
 export default defineNitroPlugin(() => {
+  // Le prérendu de la page hors ligne démarre Nitro au build : il n'a besoin
+  // ni de la base ni de l'authentification, dont l'absence d'environnement
+  // arrêterait sinon le build.
+  if (import.meta.prerender) {
+    return
+  }
+
   const result = parseAuthConfig(process.env)
 
   if (!result.success) {

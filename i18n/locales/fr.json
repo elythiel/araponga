@@ -19,7 +19,8 @@
       "key": "Touche {key}",
       "tags": "Tags : {tags}",
       "playing": "En cours",
-      "unavailable": "Indisponible"
+      "unavailable": "Indisponible",
+      "offline": "Indisponible hors ligne"
     },
     "empty": {
       "catalog": "Aucun son dans la board pour l'instant.",
@@ -186,5 +187,14 @@
     "tag_in_use": "Un autre tag porte déjà ce nom.",
     "self_demotion": "Vous ne pouvez pas retirer votre propre rôle d'administrateur.",
     "last_admin": "L'instance doit garder au moins un administrateur."
+  },
+  "pwa": {
+    "updateAvailable": "Une mise à jour est disponible.",
+    "reload": "Recharger"
+  },
+  "offline": {
+    "title": "Connexion requise",
+    "message": "L'administration n'est pas disponible hors ligne. La board, elle, reste utilisable avec les sons déjà joués.",
+    "board": "Aller à la board"
   }
 }

@@ -21,7 +21,7 @@ describe('grille de sons', () => {
   beforeEach(useFrench)
 
   it('fait du nom le nom accessible, et passe touche et tags par aria-describedby', async () => {
-    const wrapper = await mountSuspended(SoundGrid, { props: { sounds: [tada], playingIds: new Set<string>(), failedIds: new Set<string>() } })
+    const wrapper = await mountSuspended(SoundGrid, { props: { sounds: [tada], playingIds: new Set<string>(), failedIds: new Set<string>(), offlineIds: new Set<string>() } })
     const button = wrapper.find('button')
 
     expect(button.attributes('aria-labelledby')).toBe('sound-tada-name')
@@ -33,7 +33,7 @@ describe('grille de sons', () => {
   })
 
   it('n\'annonce ni touche ni tags quand il n\'y en a pas', async () => {
-    const wrapper = await mountSuspended(SoundGrid, { props: { sounds: [plain], playingIds: new Set<string>(), failedIds: new Set<string>() } })
+    const wrapper = await mountSuspended(SoundGrid, { props: { sounds: [plain], playingIds: new Set<string>(), failedIds: new Set<string>(), offlineIds: new Set<string>() } })
     const button = wrapper.find('button')
 
     expect(button.attributes('aria-describedby')).toBeUndefined()
@@ -42,7 +42,7 @@ describe('grille de sons', () => {
 
   it('dit en texte qu\'un son joue ou qu\'il est indisponible', async () => {
     const wrapper = await mountSuspended(SoundGrid, {
-      props: { sounds: [tada, plain], playingIds: new Set(['tada']), failedIds: new Set(['plain']) },
+      props: { sounds: [tada, plain], playingIds: new Set(['tada']), failedIds: new Set(['plain']), offlineIds: new Set<string>() },
     })
     const [playing, failed] = wrapper.findAll('button')
 
@@ -53,8 +53,19 @@ describe('grille de sons', () => {
     expect(failed!.text()).toContain('Indisponible')
   })
 
+  it('distingue « indisponible hors ligne » d\'un fichier en erreur, hors ligne primant', async () => {
+    const wrapper = await mountSuspended(SoundGrid, {
+      props: { sounds: [tada], playingIds: new Set<string>(), failedIds: new Set(['tada']), offlineIds: new Set(['tada']) },
+    })
+    const button = wrapper.find('button')
+
+    expect(button.attributes('data-state')).toBe('offline')
+    expect(button.attributes('aria-describedby')).toContain('sound-tada-state')
+    expect(wrapper.find('#sound-tada-state').text()).toBe('Indisponible hors ligne')
+  })
+
   it('émet le son cliqué', async () => {
-    const wrapper = await mountSuspended(SoundGrid, { props: { sounds: [tada], playingIds: new Set<string>(), failedIds: new Set<string>() } })
+    const wrapper = await mountSuspended(SoundGrid, { props: { sounds: [tada], playingIds: new Set<string>(), failedIds: new Set<string>(), offlineIds: new Set<string>() } })
 
     await wrapper.find('button').trigger('click')
 

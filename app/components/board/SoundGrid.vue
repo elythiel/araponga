@@ -6,6 +6,8 @@ defineProps<{
   sounds: readonly CatalogSound[]
   playingIds: ReadonlySet<string>
   failedIds: ReadonlySet<string>
+  /** Hors ligne, sons ni en mémoire ni en cache : ils ne joueront pas. */
+  offlineIds: ReadonlySet<string>
 }>()
 
 const emit = defineEmits<{
@@ -18,11 +20,18 @@ const { t } = useI18n()
  * Le nom accessible du bouton est le nom du son, seul ; la touche, les tags
  * et l'état passent par `aria-describedby`, pour ne pas alourdir l'annonce.
  */
-function describedBy(sound: CatalogSound, failed: boolean): string | undefined {
+type SoundState = 'offline' | 'unavailable' | undefined
+
+/** « Hors ligne » prime : c'est la cause, un échec de chargement en découle. */
+function stateOf(id: string, offline: ReadonlySet<string>, failed: ReadonlySet<string>): SoundState {
+  return offline.has(id) ? 'offline' : failed.has(id) ? 'unavailable' : undefined
+}
+
+function describedBy(sound: CatalogSound, state: SoundState): string | undefined {
   const ids = [
     sound.hotkey && `sound-${sound.id}-key`,
     sound.tags.length > 0 && `sound-${sound.id}-tags`,
-    failed && `sound-${sound.id}-state`,
+    state && `sound-${sound.id}-state`,
   ].filter(Boolean)
 
   return ids.length > 0 ? ids.join(' ') : undefined
@@ -40,9 +49,9 @@ function describedBy(sound: CatalogSound, failed: boolean): string | undefined {
         class="min-h-11 min-w-11"
         :data-sound-id="sound.id"
         :data-playing="playingIds.has(sound.id) || undefined"
-        :data-state="failedIds.has(sound.id) ? 'unavailable' : undefined"
+        :data-state="stateOf(sound.id, offlineIds, failedIds)"
         :aria-labelledby="`sound-${sound.id}-name`"
-        :aria-describedby="describedBy(sound, failedIds.has(sound.id))"
+        :aria-describedby="describedBy(sound, stateOf(sound.id, offlineIds, failedIds))"
         :aria-keyshortcuts="sound.hotkey?.toUpperCase()"
         @click="emit('play', sound)"
       >
@@ -62,10 +71,10 @@ function describedBy(sound: CatalogSound, failed: boolean): string | undefined {
           class="block"
         >{{ t('board.sound.tags', { tags: sound.tags.map(tag => tag.name).join(', ') }) }}</span>
         <span
-          v-if="failedIds.has(sound.id)"
+          v-if="stateOf(sound.id, offlineIds, failedIds)"
           :id="`sound-${sound.id}-state`"
           class="block"
-        >{{ t('board.sound.unavailable') }}</span>
+        >{{ stateOf(sound.id, offlineIds, failedIds) === 'offline' ? t('board.sound.offline') : t('board.sound.unavailable') }}</span>
         <span
           v-else-if="playingIds.has(sound.id)"
           class="block"

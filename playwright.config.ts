@@ -32,11 +32,17 @@ export default defineConfig({
   projects: [
     { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
   ],
+  // Le build de production, pas `yarn dev` : le service worker n'existe
+  // qu'au build, et c'est ce qui sera déployé. `yarn test:e2e` construit
+  // avant de lancer Playwright.
   webServer: {
-    command: `rm -rf "${E2E_DATA_DIR}" && yarn dev --port ${PORT}`,
-    // Les e2e passent par la session factice : aucun provider OIDC requis.
+    command: `rm -rf "${E2E_DATA_DIR}" && node .output/server/index.mjs`,
     env: {
+      PORT: String(PORT),
       DATA_DIR: E2E_DATA_DIR,
+      // Session factice, aucun provider OIDC requis. Le serveur la refuse en
+      // production, et doit continuer de le faire : d'où NODE_ENV=test.
+      NODE_ENV: 'test',
       AUTH_DEV_BYPASS: '1',
       SESSION_PASSWORD: 'e2e-uniquement-jamais-en-production',
     },

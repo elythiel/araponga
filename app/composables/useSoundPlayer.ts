@@ -14,6 +14,8 @@ export interface SoundPlayer {
   /** Coupe toutes les instances, y compris celles encore en chargement. */
   stopAll: () => void
   setVolume: (volume: number) => void
+  /** Le son est-il déjà en mémoire, donc jouable sans réseau ? */
+  isLoaded: (sound: PlayableSound) => boolean
   playingCount: Readonly<Ref<number>>
   /** Sons ayant au moins une instance en cours. */
   playingIds: Readonly<Ref<ReadonlySet<string>>>
@@ -100,6 +102,7 @@ export function createSoundPlayer(engine: AudioEngine): SoundPlayer {
     play,
     stopAll,
     setVolume: engine.setVolume,
+    isLoaded: sound => engine.isLoaded(sound.url),
     playingCount: computed(() => instances.value.length),
     playingIds: computed(() => new Set(instances.value.map(instance => instance.soundId))),
     failedIds: readonly(failedIds),
@@ -111,6 +114,7 @@ let shared: SoundPlayer | undefined
 /** Moteur inerte du rendu serveur : rien n'y joue jamais. */
 const SERVER_ENGINE: AudioEngine = {
   load: () => Promise.reject(new Error('Pas de son côté serveur.')),
+  isLoaded: () => false,
   start: () => () => {},
   setVolume: () => {},
   unlock: () => {},

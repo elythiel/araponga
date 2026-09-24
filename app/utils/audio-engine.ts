@@ -6,6 +6,8 @@
 export interface AudioEngine {
   /** Prépare un son ; la promesse échoue si le fichier est inaccessible ou illisible. */
   load: (url: string) => Promise<void>
+  /** Le son est-il déjà prêt, jouable sans réseau ? */
+  isLoaded: (url: string) => boolean
   /** Démarre une instance d'un son chargé. `onEnded` est appelé à sa fin, naturelle ou non. */
   start: (url: string, onEnded: () => void) => () => void
   setVolume: (volume: number) => void
@@ -111,7 +113,7 @@ export function createWebAudioEngine(Context: typeof AudioContext = AudioContext
     }
   }
 
-  return { load, start, setVolume, unlock }
+  return { load, isLoaded: url => decoded.has(url), start, setVolume, unlock }
 }
 
 /**
@@ -121,6 +123,7 @@ export function createWebAudioEngine(Context: typeof AudioContext = AudioContext
 export function createHtmlAudioEngine(): AudioEngine {
   let volume = 1
   const ready = new Map<string, Promise<void>>()
+  const loaded = new Set<string>()
   const playing = new Set<HTMLAudioElement>()
 
   function load(url: string): Promise<void> {
@@ -131,7 +134,10 @@ export function createHtmlAudioEngine(): AudioEngine {
         const probe = new Audio()
 
         probe.preload = 'auto'
-        probe.oncanplaythrough = () => resolve()
+        probe.oncanplaythrough = () => {
+          loaded.add(url)
+          resolve()
+        }
         probe.onerror = () => reject(new Error(`${url} : illisible`))
         probe.src = url
       })
@@ -175,5 +181,5 @@ export function createHtmlAudioEngine(): AudioEngine {
     }
   }
 
-  return { load, start, setVolume, unlock: () => {} }
+  return { load, isLoaded: url => loaded.has(url), start, setVolume, unlock: () => {} }
 }

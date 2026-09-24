@@ -19,7 +19,8 @@
       "key": "Key {key}",
       "tags": "Tags: {tags}",
       "playing": "Playing",
-      "unavailable": "Unavailable"
+      "unavailable": "Unavailable",
+      "offline": "Unavailable offline"
     },
     "empty": {
       "catalog": "No sounds on the board yet.",
@@ -186,5 +187,14 @@
     "tag_in_use": "Another tag already has this name.",
     "self_demotion": "You cannot remove your own administrator role.",
     "last_admin": "The instance must keep at least one administrator."
+  },
+  "pwa": {
+    "updateAvailable": "An update is available.",
+    "reload": "Reload"
+  },
+  "offline": {
+    "title": "Connection required",
+    "message": "Administration is not available offline. The board remains usable with the sounds already played.",
+    "board": "Go to the board"
   }
 }

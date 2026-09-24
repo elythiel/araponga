@@ -46,11 +46,9 @@ jobs:
       - name: Install Playwright browsers
         run: yarn playwright install --with-deps chromium
 
-      - name: End-to-end tests
+      # Construit puis teste le build : le service worker n'existe qu'au build.
+      - name: Build and end-to-end tests
         run: yarn test:e2e
-
-      - name: Build
-        run: yarn build
 
       - name: Audit dependencies
         run: yarn npm audit --severity high

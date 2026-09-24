@@ -32,6 +32,13 @@ async function loadMigrationsFromAssets(): Promise<Migration[]> {
 }
 
 export default defineNitroPlugin(async (nitro) => {
+  // Le prérendu de la page hors ligne démarre Nitro au build : il n'a besoin
+  // ni de la base ni de l'authentification, dont l'absence d'environnement
+  // arrêterait sinon le build.
+  if (import.meta.prerender) {
+    return
+  }
+
   try {
     const connection = createDatabase(databaseFile(resolveDataDir()))
     const applied = applyMigrations(connection.sqlite, await loadMigrationsFromAssets())
