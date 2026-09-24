@@ -4957,19 +4957,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vite-pwa/assets-generator@npm:^1":
-  version: 1.0.4
-  resolution: "@vite-pwa/assets-generator@npm:1.0.4"
+"@vite-pwa/assets-generator@npm:^2":
+  version: 2.0.0
+  resolution: "@vite-pwa/assets-generator@npm:2.0.0"
   dependencies:
-    cac: "npm:^6.7.14"
-    colorette: "npm:^2.0.20"
+    cac: "npm:^7.0.0"
     consola: "npm:^3.4.2"
+    picocolors: "npm:^1.1.1"
     sharp: "npm:^0.35.4"
     sharp-ico: "npm:^0.1.5"
-    unconfig: "npm:^7.3.1"
+    unconfig: "npm:^7.5.0"
   bin:
-    pwa-assets-generator: bin/pwa-assets-generator.mjs
-  checksum: 10c0/95ec27293e3334f92b5085c02c7ad2413e8c911cc1942a71165e3ba811d2e7343f8d00141e78f4f5f72f3e4b878a45a849beb0b2da20256ae6161d1cc2b11157
+    pwa-assets-generator: ./bin/pwa-assets-generator.mjs
+  checksum: 10c0/4f779632252f51b70b600f0268736a9ab40737b301b7469ad9a05ff544ada8489a50671ecab4da38abd51a5eec3b110e6bd9ee302767a6bfc3306b537e562f0d
   languageName: node
   linkType: hard
 
@@ -5537,7 +5537,7 @@ __metadata:
     "@types/better-sqlite3": "npm:^9.6.0"
     "@types/busboy": "npm:^1.5.4"
     "@types/sortablejs": "npm:^1.15.9"
-    "@vite-pwa/assets-generator": "npm:^1"
+    "@vite-pwa/assets-generator": "npm:^2"
     "@vite-pwa/nuxt": "npm:^1.1.1"
     "@vue/compiler-dom": "npm:^3.5.43"
     "@vue/test-utils": "npm:^2.5.1"
@@ -6045,13 +6045,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cac@npm:^6.7.14":
-  version: 6.7.14
-  resolution: "cac@npm:6.7.14"
-  checksum: 10c0/4ee06aaa7bab8981f0d54e5f5f9d4adcd64058e9697563ce336d8a3878ed018ee18ebe5359b2430eceae87e0758e62ea2019c3f52ae6e211b1bd2e133856cd10
-  languageName: node
-  linkType: hard
-
 "cac@npm:^7.0.0":
   version: 7.0.0
   resolution: "cac@npm:7.0.0"
@@ -6212,13 +6205,6 @@ __metadata:
   version: 1.1.4
   resolution: "color-name@npm:1.1.4"
   checksum: 10c0/a1a3f914156960902f46f7f56bc62effc6c94e84b2cae157a526b1c1f74b677a47ec602bf68a61abfa2b42d15b7c5651c6dbe72a43af720bc588dff885b10f95
-  languageName: node
-  linkType: hard
-
-"colorette@npm:^2.0.20":
-  version: 2.0.20
-  resolution: "colorette@npm:2.0.20"
-  checksum: 10c0/e94116ff33b0ff56f3b83b9ace895e5bf87c2a7a47b3401b8c3f3226e050d5ef76cf4072fb3325f9dc24d1698f9b730baf4e05eeaf861d74a1883073f4c98a40
   languageName: node
   linkType: hard
 
@@ -13248,7 +13234,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unconfig@npm:^7.3.1":
+"unconfig@npm:^7.5.0":
   version: 7.5.0
   resolution: "unconfig@npm:7.5.0"
   dependencies:
