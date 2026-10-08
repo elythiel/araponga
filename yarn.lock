@@ -1292,7 +1292,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@clack/prompts@npm:^1.7.0":
+"@clack/prompts@npm:1.8.1, @clack/prompts@npm:^1.7.0":
   version: 1.8.1
   resolution: "@clack/prompts@npm:1.8.1"
   dependencies:
@@ -2888,7 +2888,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/devtools-kit@npm:3.4.2, @nuxt/devtools-kit@npm:^3.4.1":
+"@nuxt/devtools-kit@npm:3.4.2, @nuxt/devtools-kit@npm:^3.4.1, @nuxt/devtools-kit@npm:^3.4.2":
   version: 3.4.2
   resolution: "@nuxt/devtools-kit@npm:3.4.2"
   dependencies:
@@ -3192,7 +3192,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxt/test-utils@npm:^4.0.0, @nuxt/test-utils@npm:^4.3.2":
+"@nuxt/test-utils@npm:^4.0.0":
   version: 4.3.2
   resolution: "@nuxt/test-utils@npm:4.3.2"
   dependencies:
@@ -3259,6 +3259,72 @@ __metadata:
     vitest:
       optional: true
   checksum: 10c0/1f3613cf779a1bc43de21873b961504226b97f50eb8a0b3f312d2ac1f6c0361cf72824b3afd056a50df019e509820b789420334c29b57c4c25ea34f212ffc0ec
+  languageName: node
+  linkType: hard
+
+"@nuxt/test-utils@npm:^4.3.3":
+  version: 4.3.3
+  resolution: "@nuxt/test-utils@npm:4.3.3"
+  dependencies:
+    "@clack/prompts": "npm:1.8.1"
+    "@nuxt/devtools-kit": "npm:^3.4.2"
+    "@nuxt/kit": "npm:^4.5.2"
+    consola: "npm:^3.4.2"
+    defu: "npm:^6.1.7"
+    exsolve: "npm:^1.1.1"
+    fake-indexeddb: "npm:^6.2.5"
+    get-port-please: "npm:^3.2.0"
+    magic-string: "npm:^1.4.2"
+    ofetch: "npm:^1.5.1"
+    oxc-walker: "npm:^1.1.1"
+    package-manager-detector: "npm:^1.8.0"
+    pathe: "npm:^2.0.3"
+    perfect-debounce: "npm:^2.1.0"
+    radix3: "npm:^1.1.2"
+    std-env: "npm:^4.2.0"
+    tinyexec: "npm:^1.3.1"
+    ufo: "npm:^1.6.4"
+    unplugin: "npm:^3.4.0"
+    vitest-environment-nuxt: "npm:2.0.0"
+  peerDependencies:
+    "@cucumber/cucumber": ">=11.0.0"
+    "@jest/globals": ">=30.0.0"
+    "@playwright/test": ^1.43.1
+    "@testing-library/vue": ^8.0.1
+    "@vue/test-utils": ^2.4.2
+    h3: ^1.15.0 || ^2.0.0-0
+    happy-dom: ">=20.0.11"
+    jsdom: ">=27.4.0"
+    nuxt: ^3.21.0 || ^4.0.0 || ^5.0.0-0
+    playwright-core: ^1.43.1
+    vitest: ^4.0.2 || ^5.0.0
+    vue: ^3.5.0
+  peerDependenciesMeta:
+    "@cucumber/cucumber":
+      optional: true
+    "@jest/globals":
+      optional: true
+    "@playwright/test":
+      optional: true
+    "@testing-library/vue":
+      optional: true
+    "@vitest/ui":
+      optional: true
+    "@vue/test-utils":
+      optional: true
+    h3:
+      optional: true
+    happy-dom:
+      optional: true
+    jsdom:
+      optional: true
+    nuxt:
+      optional: true
+    playwright-core:
+      optional: true
+    vitest:
+      optional: true
+  checksum: 10c0/22722ba212db98f6f27fbd6521d4d30ae26f00aac452928b69768183d8ea88162e8bf91cbe176c86632343e03e619b42dad03526258a90d2593803dc02227bcd
   languageName: node
   linkType: hard
 
@@ -5530,7 +5596,7 @@ __metadata:
   resolution: "araponga@workspace:."
   dependencies:
     "@nuxt/eslint": "npm:^1.17.0"
-    "@nuxt/test-utils": "npm:^4.3.2"
+    "@nuxt/test-utils": "npm:^4.3.3"
     "@nuxtjs/i18n": "npm:^10.6.0"
     "@playwright/test": "npm:^1.63.0"
     "@tailwindcss/vite": "npm:^4.3.3"
@@ -9936,6 +10002,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"magic-string@npm:^1.4.2":
+  version: 1.4.3
+  resolution: "magic-string@npm:1.4.3"
+  dependencies:
+    "@jridgewell/sourcemap-codec": "npm:^1.6.0"
+  checksum: 10c0/857743a1e7039d2e867505bb272a57cc605f610b90f6bf9ef6cbf9654e9cd64330ec35e564a58ca455350529872c3ecc01f37da934da130391237f9f593cc565
+  languageName: node
+  linkType: hard
+
 "magicast@npm:^0.5.2, magicast@npm:^0.5.4":
   version: 0.5.5
   resolution: "magicast@npm:0.5.5"
@@ -13452,7 +13527,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unplugin@npm:^3.0.0, unplugin@npm:^3.3.0":
+"unplugin@npm:^3.0.0, unplugin@npm:^3.3.0, unplugin@npm:^3.4.0":
   version: 3.4.0
   resolution: "unplugin@npm:3.4.0"
   dependencies:
