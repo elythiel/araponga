@@ -54,7 +54,7 @@
     "@vue/test-utils": "^2.5.1",
     "drizzle-kit": "^0.31.11",
     "eslint": "^10.11.0",
-    "happy-dom": "^20.14.5",
+    "happy-dom": "^21.0.1",
     "jiti": "^2.7.0",
     "jose": "^6.2.12",
     "playwright-core": "^1.63.0",
